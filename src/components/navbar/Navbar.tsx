@@ -2,6 +2,8 @@
 import { LinkType } from "@/types/common.type";
 import Link from "next/link";
 import React from "react";
+import styles from "./navbar.module.css";
+import Button from "../button/Button";
 
 type Props = {};
 
@@ -16,17 +18,19 @@ const links: LinkType[] = [
 
 const Navbar = (props: Props) => {
   return (
-    <nav>
-      <Link href={"/"}>Ekulista</Link>
-      <div>
+    <div className={styles.container}>
+      <Link href={"/"} className={styles.logo}>
+        Ekulista
+      </Link>
+      <div className={styles.links}>
         {links.map((link) => (
           <Link key={link.id} href={link.url}>
             {link.title}
           </Link>
         ))}
+        <Button text="Logout" url="/portfolio" />
       </div>
-      <button onClick={() => console.log("logged out")}>Logout</button>
-    </nav>
+    </div>
   );
 };
 
