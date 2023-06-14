@@ -23,7 +23,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "git-cz"
+      "path": "@commitlint/cz-commitlint"
     }
   },
   "devDependencies": {
