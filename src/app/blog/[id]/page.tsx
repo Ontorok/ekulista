@@ -38,7 +38,7 @@ const BlogPost = ({ params: { id } }: Props) => {
         </div>
         <div className={styles.imageContainer}>
           <Image
-            src={data.blohImgUrl}
+            src={data.blogImgUrl}
             alt=""
             fill={true}
             className={styles.image}

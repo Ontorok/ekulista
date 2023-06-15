@@ -17,7 +17,7 @@ const Blog = ({}: Props) => {
         >
           <div className={styles.imageContainer}>
             <Image
-              src={blog.imgageUrl}
+              src={blog.blogImgUrl}
               alt=""
               width={400}
               height={250}

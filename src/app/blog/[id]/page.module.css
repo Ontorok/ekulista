@@ -49,3 +49,8 @@
   color: #999;
   text-align: justify;
 }
+
+.text::selection {
+  background-color: var(--main-color);
+  color: black;
+}
