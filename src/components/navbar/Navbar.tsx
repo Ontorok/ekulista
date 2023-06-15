@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "./navbar.module.css";
 import Button from "../button/Button";
+import DarkModeToggle from "../darkModeToggle/DarkModeToggle";
 
 type Props = {};
 
@@ -23,6 +24,7 @@ const Navbar = (props: Props) => {
         Ekulista
       </Link>
       <div className={styles.links}>
+        <DarkModeToggle />
         {links.map((link) => (
           <Link key={link.id} href={link.url}>
             {link.title}
