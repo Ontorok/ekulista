@@ -11,20 +11,22 @@ type Props = {
   };
 };
 
-const getData = (id: string): Blog => {
-  const blog = blogs.find((b) => b.id === parseInt(id));
+async function getData(id: string) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
 
-  return blog ? blog : notFound();
-};
-
-const BlogPost = ({ params: { id } }: Props) => {
-  const data = getData(id);
+const BlogPost = async ({ params: { id } }: Props) => {
+  const data = await getData(id);
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>{data.description}</p>
+          <p className={styles.desc}>{data.body}</p>
           <div className={styles.author}>
             <Image
               src={data.authorImgUrl}
