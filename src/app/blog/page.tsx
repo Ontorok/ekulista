@@ -3,14 +3,19 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { blogs } from "./data";
 import Link from "next/link";
+import { Blog } from "@/models/blog.model";
 
 type Props = {};
 
-async function getData() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+async function getData(): Promise<Blog[]> {
+  const res = await fetch("http://localhost:3000/api/blog", {
+    // Through error if we do not use cache option
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+
   return res.json();
 }
 
@@ -18,17 +23,15 @@ const Blog = async ({}: Props) => {
   const blogs = await getData();
   return (
     <div className={styles.mainContainer}>
-      {blogs.map((blog: any) => (
+      {blogs.map((blog) => (
         <Link
-          href={`/blog/${blog.id}`}
+          href={`/blog/${blog._id}`}
           className={styles.container}
-          key={blog.id}
+          key={blog._id}
         >
           <div className={styles.imageContainer}>
             <Image
-              src={
-                "https://images.pexels.com/photos/5429261/pexels-photo-5429261.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              }
+              src={blog.blogImgUrl}
               alt=""
               width={400}
               height={250}
@@ -37,7 +40,7 @@ const Blog = async ({}: Props) => {
           </div>
           <div className={styles.content}>
             <h1 className={styles.title}>{blog.title}</h1>
-            <p className={styles.desc}>{blog.body}</p>
+            <p className={styles.desc}>{blog.content}</p>
           </div>
         </Link>
       ))}
