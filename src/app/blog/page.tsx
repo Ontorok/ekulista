@@ -4,6 +4,7 @@ import Image from "next/image";
 import { blogs } from "./data";
 import Link from "next/link";
 import { Blog } from "@/models/blog.model";
+import { Metadata } from "next";
 
 type Props = {};
 
@@ -18,6 +19,11 @@ async function getData(): Promise<Blog[]> {
 
   return res.json();
 }
+
+export const metadata: Metadata = {
+  title: "Blogs - Ekulista",
+  description: "Blogs are different categories",
+};
 
 const Blog = async ({}: Props) => {
   const blogs = await getData();

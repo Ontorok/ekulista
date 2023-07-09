@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Blog } from "@/models/blog.model";
 import { blogs } from "../data";
 import { notFound } from "next/navigation";
+import { Metadata, ResolvingMetadata } from "next";
 
 type Props = {
   params: {
@@ -22,9 +23,31 @@ async function getData(id: string): Promise<Blog> {
   return res.json();
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const id = params.id;
+
+  // fetch data
+  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+    // Through error if we do not use cache option
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return {
+      title: "No Blog Found",
+    };
+  }
+
+  const blog = await res.json();
+  return {
+    title: blog.title,
+  };
+}
+
 const BlogPost = async ({ params: { id } }: Props) => {
   const data = await getData(id);
-  console.log(id);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>

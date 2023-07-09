@@ -5,6 +5,10 @@
   margin-bottom: 50px;
 }
 
+.imageContainer {
+  align-self: flex-start;
+}
+
 .image {
   object-fit: cover;
 }

@@ -40,6 +40,8 @@
 
 .image {
   object-fit: cover;
+  padding-left: 5px;
+  border-radius: 10px;
 }
 
 .content {

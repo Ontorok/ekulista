@@ -5,6 +5,7 @@ import React from "react";
 import styles from "./navbar.module.css";
 import Button from "../button/Button";
 import DarkModeToggle from "../darkModeToggle/DarkModeToggle";
+import { signOut, useSession } from "next-auth/react";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ const links: LinkType[] = [
 ];
 
 const Navbar = (props: Props) => {
+  const session = useSession();
   return (
     <div className={styles.container}>
       <Link href={"/"} className={styles.logo}>
@@ -30,7 +32,12 @@ const Navbar = (props: Props) => {
             {link.title}
           </Link>
         ))}
-        <Button text="Logout" url="/portfolio" />
+
+        {session.status === "authenticated" && (
+          <button className={styles.logout} onClick={(e) => signOut()}>
+            Logout
+          </button>
+        )}
       </div>
     </div>
   );
