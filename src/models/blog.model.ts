@@ -18,11 +18,15 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
-    desc: {
+    authorName: {
       type: String,
       required: true,
     },
-    img: {
+    authorImgUrl: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },
@@ -30,7 +34,7 @@ const blogSchema = new Schema(
       type: String,
       required: true,
     },
-    username: {
+    blogImgUrl: {
       type: String,
       required: true,
     },

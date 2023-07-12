@@ -36,10 +36,10 @@ const Login = ({ url }: Props) => {
     const email = (target[0] as HTMLInputElement).value;
     const password = (target[1] as HTMLInputElement).value;
 
-    // signIn("credentials", {
-    //   email,
-    //   password,
-    // });
+    signIn("credentials", {
+      email,
+      password,
+    });
   };
 
   return (

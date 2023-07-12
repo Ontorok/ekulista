@@ -9,7 +9,7 @@ import { Metadata } from "next";
 type Props = {};
 
 async function getData(): Promise<Blog[]> {
-  const res = await fetch("http://localhost:3000/api/blog", {
+  const res = await fetch("http://localhost:8080/api/blog", {
     // Through error if we do not use cache option
     cache: "no-store",
   });

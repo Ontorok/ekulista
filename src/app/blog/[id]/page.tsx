@@ -13,7 +13,7 @@ type Props = {
 };
 
 async function getData(id: string): Promise<Blog> {
-  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+  const res = await fetch(`http://localhost:8080/api/blog/${id}`, {
     // Through error if we do not use cache option
     cache: "no-store",
   });
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = params.id;
 
   // fetch data
-  const res = await fetch(`http://localhost:3000/api/blog/${id}`, {
+  const res = await fetch(`http://localhost:8080/api/blog/${id}`, {
     // Through error if we do not use cache option
     cache: "no-store",
   });
